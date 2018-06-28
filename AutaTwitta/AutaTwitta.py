@@ -4,12 +4,14 @@ import sys
 import time
 import traceback
 import os
-
-apikeyreader=APIKeyReader.Reader(os.getcwd()+r"\SettingFiles")
+if os.name=='nt':
+    apikeyreader=APIKeyReader.Reader(os.getcwd()+r"\SettingFiles")
+else:
+    apikeyreader=APIKeyReader.Reader(os.getcwd()+r"/SettingFiles")
 api=apikeyreader.GetApi()
 print(type(api.VerifyCredentials()))
 api.PostDirectMessage("AutaTwitta 起動",screen_name=api.VerifyCredentials().screen_name)
-
+pass
 def getFFlist(followers,follows):
     fflist=[]
     for i in followers:
