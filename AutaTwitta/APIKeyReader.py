@@ -1,11 +1,13 @@
 from __future__ import unicode_literals
 import twitter
 import traceback
+import os
 class Reader(object):
     def __init__(self,dir):
         try:
-            print(dir+r"\KEY を確認中...")
-            self.LOGFILE=open(dir+r"\KEY")
+            os.chdir(dir)
+            print(os.getcwd()+r"\KEY を確認中...")
+            self.LOGFILE=open("KEY")
             self.lines=self.LOGFILE.readlines()
             for line in self.lines:
                 line=line.rstrip('\r\n')
@@ -27,6 +29,7 @@ class Reader(object):
 
             self.api=twitter.Api(consumer_key=self.API_KEY,consumer_secret=self.API_SECRET,access_token_key=self.ACCESS_TOKEN,access_token_secret=self.ACCESS_TOKEN_SECRET)
             print("獲得したAPIの内容:"+str(self.api)+";{0}".format(isinstance(self.api,twitter.Api)))
+
             
         except:
             print("KEYの読み込みに失敗")
