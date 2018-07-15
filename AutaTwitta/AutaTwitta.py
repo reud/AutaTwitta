@@ -43,7 +43,7 @@ def KillFollow(endList,follows,api):
     return len(killList)
 def Sercher(api):
     #相互フォローって含んでる文をサーチ
-    search=api.GetSearch(term="#followback",count=70)
+    search=api.GetSearch(term="#followback",count=50)
     print(search)
     friends=api.GetFriendIDs()
     for i in search:
